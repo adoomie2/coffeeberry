@@ -12,5 +12,7 @@ while True:
     elif guess > number:
         print("Too high!")
     else:
+        score = max(0, 101 - attempts)
         print(f"Correct! You guessed it in {attempts} tries.")
+        print(f"Your score: {score}")
         break
