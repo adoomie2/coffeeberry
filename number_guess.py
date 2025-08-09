@@ -62,9 +62,12 @@ def provide_feedback(guess, target):
     else:
         return True
 
-    print(
-        f"{YELLOW}Warm!{RESET}" if abs(guess - target) <= 10 else f"{CYAN}Cold!{RESET}"
-    )
+    close = abs(guess - target) <= 10
+    if close:
+        direction = "higher" if guess < target else "lower"
+        print(f"{YELLOW}Hint: Try a bit {direction}!{RESET}")
+
+    print(f"{YELLOW}Warm!{RESET}" if close else f"{CYAN}Cold!{RESET}")
     return False
 
 
