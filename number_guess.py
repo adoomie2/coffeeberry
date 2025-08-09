@@ -21,6 +21,14 @@ YELLOW = "\033[33m"
 BLUE = "\033[34m"
 CYAN = "\033[36m"
 
+BANNER = r"""
+ _   _                 _                       ____
+| \ | | _____      __| | ___  _ __ ___   ___ |  _ \ __ _ _ __ ___  ___
+|  \| |/ _ \ \ /\ / /|/ _ \| '_ ` _ \ / _ \| |_) / _` | '__/ _ \/ __|
+| |\  |  __/\ V  V /| | (_) | | | | | |  __/|  __/ (_| | | |  __/\__ \
+|_| \_|\___| \_/\_/ |_|\___/|_| |_| |_|\___||_|   \__,_|_|  \___||___/
+""".strip("\n")
+
 
 def choose_difficulty():
     """Ask the player to choose a difficulty level."""
@@ -62,7 +70,7 @@ def provide_feedback(guess, target):
 
 def play():
     """Play a round of the number guessing game."""
-    print(f"{CYAN}🎯 Number Guessing Game!{RESET}")
+    print(f"{CYAN}{BANNER}{RESET}")
     upper_limit = choose_difficulty()
     target = random.randint(1, upper_limit)
     attempts = 0
