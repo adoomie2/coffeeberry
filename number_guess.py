@@ -14,3 +14,8 @@ while True:
     else:
         print(f"Correct! You guessed it in {attempts} tries.")
         break
+
+    if abs(guess - number) <= 10:
+        print("Warm!")
+    else:
+        print("Cold!")
