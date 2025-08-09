@@ -26,3 +26,8 @@ while True:
         print(f"Correct! You guessed it in {attempts} tries.")
         print(f"Your score: {score}")
         break
+
+    if abs(guess - number) <= 10:
+        print("Warm!")
+    else:
+        print("Cold!")
