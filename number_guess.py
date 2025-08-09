@@ -14,23 +14,32 @@ FUNNY_HIGH = [
     "Too high! The number isn't on Mars, you know!",
 ]
 
+RESET = "\033[0m"
+RED = "\033[31m"
+GREEN = "\033[32m"
+YELLOW = "\033[33m"
+BLUE = "\033[34m"
+CYAN = "\033[36m"
+
 
 def choose_difficulty():
     """Ask the player to choose a difficulty level."""
     while True:
-        choice = input("Choose difficulty (easy/medium/hard): ").strip().lower()
+        choice = input(f"{CYAN}Choose difficulty (easy/medium/hard): {RESET}").strip().lower()
         if choice in DIFFICULTIES:
             return DIFFICULTIES[choice]
-        print("Invalid choice. Please select easy, medium, or hard.")
+        print(f"{YELLOW}Invalid choice. Please select easy, medium, or hard.{RESET}")
 
 
 def get_guess(upper_limit):
     """Prompt the player for a guess."""
     while True:
         try:
-            return int(input(f"Guess a number between 1 and {upper_limit}: "))
+            return int(
+                input(f"{CYAN}Guess a number between 1 and {upper_limit}: {RESET}")
+            )
         except ValueError:
-            print("Please enter a valid number.")
+            print(f"{RED}Please enter a valid number.{RESET}")
 
 
 def provide_feedback(guess, target):
@@ -39,19 +48,21 @@ def provide_feedback(guess, target):
     Returns True if the guess was correct, otherwise False.
     """
     if guess < target:
-        print(random.choice(FUNNY_LOW))
+        print(f"{BLUE}{random.choice(FUNNY_LOW)}{RESET}")
     elif guess > target:
-        print(random.choice(FUNNY_HIGH))
+        print(f"{RED}{random.choice(FUNNY_HIGH)}{RESET}")
     else:
         return True
 
-    print("Warm!" if abs(guess - target) <= 10 else "Cold!")
+    print(
+        f"{YELLOW}Warm!{RESET}" if abs(guess - target) <= 10 else f"{CYAN}Cold!{RESET}"
+    )
     return False
 
 
 def play():
     """Play a round of the number guessing game."""
-    print("🎯 Number Guessing Game!")
+    print(f"{CYAN}🎯 Number Guessing Game!{RESET}")
     upper_limit = choose_difficulty()
     target = random.randint(1, upper_limit)
     attempts = 0
@@ -62,8 +73,8 @@ def play():
 
         if provide_feedback(guess, target):
             score = max(0, 101 - attempts)
-            print(f"Correct! You guessed it in {attempts} tries.")
-            print(f"Your score: {score}")
+            print(f"{GREEN}Correct! You guessed it in {attempts} tries.{RESET}")
+            print(f"{GREEN}Your score: {score}{RESET}")
             break
 
 
