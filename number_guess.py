@@ -1,11 +1,21 @@
 import random
 
 print("🎯 Number Guessing Game!")
-number = random.randint(1, 100)
+
+difficulties = {"easy": 50, "medium": 100, "hard": 500}
+
+while True:
+    choice = input("Choose difficulty (easy/medium/hard): ").strip().lower()
+    if choice in difficulties:
+        upper_limit = difficulties[choice]
+        break
+    print("Invalid choice. Please select easy, medium, or hard.")
+
+number = random.randint(1, upper_limit)
 attempts = 0
 
 while True:
-    guess = int(input("Guess a number between 1 and 100: "))
+    guess = int(input(f"Guess a number between 1 and {upper_limit}: "))
     attempts += 1
     if guess < number:
         print("Too low!")
