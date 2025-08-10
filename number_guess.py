@@ -75,6 +75,9 @@ def play():
     """Play a round of the number guessing game."""
     print(f"{CYAN}{BANNER}{RESET}")
     print(f"{GREEN}Welcome to the Number Guessing Game!{RESET}")
+    print(
+        f"{GREEN}Scores scale with difficulty and reward fewer attempts.{RESET}"
+    )
     upper_limit = choose_difficulty()
     target = random.randint(1, upper_limit)
     attempts = 0
@@ -84,9 +87,11 @@ def play():
         attempts += 1
 
         if provide_feedback(guess, target):
-            score = max(0, 101 - attempts)
+            score = max(1, upper_limit // attempts)
             print(f"{GREEN}Correct! You guessed it in {attempts} tries.{RESET}")
-            print(f"{GREEN}Your score: {score}{RESET}")
+            print(
+                f"{GREEN}Your score: {score} (higher for harder games and quicker guesses){RESET}"
+            )
             break
 
 
