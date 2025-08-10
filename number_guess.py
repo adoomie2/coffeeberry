@@ -43,8 +43,13 @@ def get_guess(upper_limit):
     """Prompt the player for a guess."""
     while True:
         try:
-            return int(
+            guess = int(
                 input(f"{CYAN}Guess a number between 1 and {upper_limit}: {RESET}")
+            )
+            if 1 <= guess <= upper_limit:
+                return guess
+            print(
+                f"{RED}Please enter a number between 1 and {upper_limit}.{RESET}"
             )
         except ValueError:
             print(f"{RED}Please enter a valid number.{RESET}")
