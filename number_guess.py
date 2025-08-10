@@ -74,8 +74,6 @@ def provide_feedback(guess, target, upper_limit):
         print(
             f"{YELLOW}Hint: Try a bit {direction}! You're within {threshold} numbers.{RESET}"
         )
-
-    if close:
         print(
             f"{YELLOW}Warm! You're within {threshold} numbers of the target.{RESET}"
         )
