@@ -9,3 +9,4 @@ The number guessing game greets players with a friendly welcome message and now 
 - **Cold** otherwise.
 - Wrong guesses get a random funny reaction to keep the game entertaining.
 - Terminal messages are color-coded using ANSI escape codes for easier readability.
+- Score increases with higher difficulty and decreases with more attempts, so quick guesses on harder modes earn more points.
