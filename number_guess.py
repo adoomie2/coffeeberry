@@ -74,6 +74,7 @@ def provide_feedback(guess, target):
 def play():
     """Play a round of the number guessing game."""
     print(f"{CYAN}{BANNER}{RESET}")
+    print(f"{GREEN}Welcome to the Number Guessing Game!{RESET}")
     upper_limit = choose_difficulty()
     target = random.randint(1, upper_limit)
     attempts = 0
