@@ -86,6 +86,13 @@ def provide_feedback(guess, target, upper_limit):
     return False
 
 
+def calculate_score(attempts, upper_limit):
+    """Calculate the player's score based on attempts and difficulty."""
+    base = max(0, 101 - attempts)
+    difficulty_factor = upper_limit / min(DIFFICULTIES.values())
+    return int(base * difficulty_factor)
+
+
 def play():
     """Play a round of the number guessing game."""
     print(f"{CYAN}{BANNER}{RESET}")
@@ -99,7 +106,7 @@ def play():
         attempts += 1
 
         if provide_feedback(guess, target, upper_limit):
-            score = max(0, 101 - attempts)
+            score = calculate_score(attempts, upper_limit)
             print(f"{GREEN}Correct! You guessed it in {attempts} tries.{RESET}")
             print(f"{GREEN}Your score: {score}{RESET}")
             break
