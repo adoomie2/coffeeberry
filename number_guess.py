@@ -50,7 +50,7 @@ def get_guess(upper_limit):
             print(f"{RED}Please enter a valid number.{RESET}")
 
 
-def provide_feedback(guess, target):
+def provide_feedback(guess, target, upper_limit):
     """Give feedback about a guess.
 
     Returns True if the guess was correct, otherwise False.
@@ -62,12 +62,22 @@ def provide_feedback(guess, target):
     else:
         return True
 
-    close = abs(guess - target) <= 10
+    threshold = max(1, int(upper_limit * 0.02))
+    close = abs(guess - target) <= threshold
     if close:
         direction = "higher" if guess < target else "lower"
-        print(f"{YELLOW}Hint: Try a bit {direction}!{RESET}")
+        print(
+            f"{YELLOW}Hint: Try a bit {direction}! You're within {threshold} numbers.{RESET}"
+        )
 
-    print(f"{YELLOW}Warm!{RESET}" if close else f"{CYAN}Cold!{RESET}")
+    if close:
+        print(
+            f"{YELLOW}Warm! You're within {threshold} numbers of the target.{RESET}"
+        )
+    else:
+        print(
+            f"{CYAN}Cold! More than {threshold} away from the target.{RESET}"
+        )
     return False
 
 
@@ -83,7 +93,7 @@ def play():
         guess = get_guess(upper_limit)
         attempts += 1
 
-        if provide_feedback(guess, target):
+        if provide_feedback(guess, target, upper_limit):
             score = max(0, 101 - attempts)
             print(f"{GREEN}Correct! You guessed it in {attempts} tries.{RESET}")
             print(f"{GREEN}Your score: {score}{RESET}")
